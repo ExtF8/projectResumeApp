@@ -1,10 +1,10 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import './styles/App.css';
 import  PersonalInfo  from './classes/PersonalInfo';
 
 function App() {
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     const personalInfo = new PersonalInfo();
 
