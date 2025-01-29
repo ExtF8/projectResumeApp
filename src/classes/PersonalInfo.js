@@ -1,5 +1,5 @@
 export default class PersonalInfo {
-    constructor(fullName = '', email = '', phone = '', address = '', profileSummary = '') {
+    constructor(fullName = 'John Doe', email = 'johndoe@mail.com', phone = '1234567', address = 'Random City, Random Country', profileSummary = 'Lorem ipsum') {
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -7,7 +7,8 @@ export default class PersonalInfo {
         this.profileSummary = profileSummary;
     }
 
-    updateFullName(fullName) {
+    updateFullName(firstName, lastName) {
+        const fullName = firstName + ' ' + lastName
         this.fullName = fullName;
     }
 
