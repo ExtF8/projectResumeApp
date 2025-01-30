@@ -32,27 +32,27 @@ export default class PersonalInfo {
         this.phone = phone;
     }
 
-    getPhone() {
-        return this.phone;
+    getFullName() {
+        return this.fullName;
     }
 
     getEmail() {
         return this.email;
     }
 
-    getFullName() {
-        return this.fullName;
-    }
-
-    #validatePhone(phone) {
-        const phoneRegex = /^(?:\+?[0-9]{7,15})$/;
-
-        return phoneRegex.test(phone);
+    getPhone() {
+        return this.phone;
     }
 
     #validateEmail(email) {
         const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 
         return emailRegex.test(email);
+    }
+
+    #validatePhone(phone) {
+        const phoneRegex = /^(?:\+?[0-9]{7,15})$/;
+
+        return phoneRegex.test(phone);
     }
 }
