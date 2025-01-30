@@ -63,3 +63,11 @@ test('should return address, city and country', () => {
 
     expect(personalInfo.getAddress()).toBe('City, Country');
 });
+
+test('should return profile summary', () => {
+    const personalInfo = new PersonalInfo();
+
+    personalInfo.updateSummary('Lorem ipsum');
+
+    expect(personalInfo.getSummary()).toBe('Lorem ipsum');
+});
