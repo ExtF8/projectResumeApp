@@ -23,11 +23,9 @@ export default class PersonalInfo {
     }
 
     updatePhone(phone) {
-        console.log(phone)
         const isValid = this.#validatePhone(phone);
 
         if (!isValid) {
-            console.log(isValid)
             return false;
         }
 
@@ -47,8 +45,7 @@ export default class PersonalInfo {
     }
 
     #validatePhone(phone) {
-        const phoneRegex =
-            /(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/g;
+        const phoneRegex = /^(?:\+?[0-9]{7,15})$/;
 
         return phoneRegex.test(phone);
     }
