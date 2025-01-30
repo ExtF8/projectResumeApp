@@ -43,9 +43,9 @@ test('should update phone', () => {
 test('should update phone with country code', () => {
     const personalInfo = new PersonalInfo();
 
-    personalInfo.updatePhone('+1234567')
+    personalInfo.updatePhone('+1234567');
 
-    expect(personalInfo.getPhone()).toBe('+1234567')
+    expect(personalInfo.getPhone()).toBe('+1234567');
 });
 
 test('should return false if phone fails regex', () => {
@@ -54,4 +54,12 @@ test('should return false if phone fails regex', () => {
     const wrongPhone = personalInfo.updatePhone('+213123df');
 
     expect(wrongPhone).toBe(false);
+});
+
+test('should return address, city and country', () => {
+    const personalInfo = new PersonalInfo();
+
+    personalInfo.updateAddress('City', 'Country');
+
+    expect(personalInfo.getAddress()).toBe('City, Country');
 });
