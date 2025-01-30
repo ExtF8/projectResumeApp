@@ -32,6 +32,11 @@ export default class PersonalInfo {
         this.phone = phone;
     }
 
+    updateAddress(city, country) {
+        const address = city + ', ' + country
+        this.address = address;
+    }
+
     getFullName() {
         return this.fullName;
     }
@@ -42,6 +47,10 @@ export default class PersonalInfo {
 
     getPhone() {
         return this.phone;
+    }
+
+    getAddress() {
+        return this.address
     }
 
     #validateEmail(email) {
