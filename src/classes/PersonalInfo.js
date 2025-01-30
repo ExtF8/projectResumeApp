@@ -1,11 +1,5 @@
 export default class PersonalInfo {
-    constructor(
-        fullName = '',
-        email = '',
-        phone = '',
-        address = '',
-        profileSummary = ''
-    ) {
+    constructor(fullName = '', email = '', phone = '', address = '', profileSummary = '') {
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -26,11 +20,6 @@ export default class PersonalInfo {
         }
 
         this.email = email;
-    }
-
-    #validateEmail(email) {
-        const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
-        return emailRegex.test(email);
     }
 
     getEmail() {
