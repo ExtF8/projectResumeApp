@@ -24,8 +24,10 @@ test('should update email', () => {
     expect(personalInfo.email).toBe('some@some.com');
 });
 
-test('should throw error if email fails regex', () => {
+test('should return false if email fails regex', () => {
     const personalInfo = new PersonalInfo();
 
-    expect(() => {personalInfo.updateEmail('some!some.com')}).toThrow(new Error('invalid email'));
+    const wrongEmail = personalInfo.updateEmail('some!some.com')
+
+    expect(wrongEmail).toBe(false);
 });
