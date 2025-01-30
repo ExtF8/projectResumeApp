@@ -22,7 +22,7 @@ export default class PersonalInfo {
         const isValid = this.#validateEmail(email);
 
         if (!isValid) {
-            throw new Error('invalid email');
+            return false;
         }
 
         this.email = email;
@@ -39,5 +39,10 @@ export default class PersonalInfo {
 
     getFullName() {
         return this.fullName;
+    }
+
+    #validateEmail(email) {
+        const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
+        return emailRegex.test(email);
     }
 }
