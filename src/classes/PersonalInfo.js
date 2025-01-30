@@ -33,8 +33,12 @@ export default class PersonalInfo {
     }
 
     updateAddress(city, country) {
-        const address = city + ', ' + country
+        const address = city + ', ' + country;
         this.address = address;
+    }
+
+    updateSummary(profileSummary) {
+        this.profileSummary = profileSummary;
     }
 
     getFullName() {
@@ -50,7 +54,11 @@ export default class PersonalInfo {
     }
 
     getAddress() {
-        return this.address
+        return this.address;
+    }
+
+    getSummary() {
+        return this.profileSummary;
     }
 
     #validateEmail(email) {
