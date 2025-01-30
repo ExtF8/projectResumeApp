@@ -40,10 +40,18 @@ test('should update phone', () => {
     expect(personalInfo.getPhone()).toBe('1234567');
 });
 
+test('should update phone with country code', () => {
+    const personalInfo = new PersonalInfo();
+
+    personalInfo.updatePhone('+1234567')
+
+    expect(personalInfo.getPhone()).toBe('+1234567')
+});
+
 test('should return false if phone fails regex', () => {
     const personalInfo = new PersonalInfo();
 
-    const wrongPhone = personalInfo.updatePhone('123345df');
+    const wrongPhone = personalInfo.updatePhone('+213123df');
 
     expect(wrongPhone).toBe(false);
 });
