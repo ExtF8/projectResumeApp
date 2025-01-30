@@ -22,6 +22,22 @@ export default class PersonalInfo {
         this.email = email;
     }
 
+    updatePhone(phone) {
+        console.log(phone)
+        const isValid = this.#validatePhone(phone);
+
+        if (!isValid) {
+            console.log(isValid)
+            return false;
+        }
+
+        this.phone = phone;
+    }
+
+    getPhone() {
+        return this.phone;
+    }
+
     getEmail() {
         return this.email;
     }
@@ -30,8 +46,16 @@ export default class PersonalInfo {
         return this.fullName;
     }
 
+    #validatePhone(phone) {
+        const phoneRegex =
+            /(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/g;
+
+        return phoneRegex.test(phone);
+    }
+
     #validateEmail(email) {
         const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
+
         return emailRegex.test(email);
     }
 }

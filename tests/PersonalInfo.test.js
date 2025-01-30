@@ -27,7 +27,23 @@ test('should update email', () => {
 test('should return false if email fails regex', () => {
     const personalInfo = new PersonalInfo();
 
-    const wrongEmail = personalInfo.updateEmail('some!some.com')
+    const wrongEmail = personalInfo.updateEmail('some!some.com');
 
     expect(wrongEmail).toBe(false);
+});
+
+test('should update phone', () => {
+    const personalInfo = new PersonalInfo();
+
+    personalInfo.updatePhone('1234567');
+
+    expect(personalInfo.getPhone()).toBe('1234567');
+});
+
+test('should return false if phone fails regex', () => {
+    const personalInfo = new PersonalInfo();
+
+    const wrongPhone = personalInfo.updatePhone('123345df');
+
+    expect(wrongPhone).toBe(false);
 });
