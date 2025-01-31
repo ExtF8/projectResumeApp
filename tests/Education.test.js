@@ -14,7 +14,7 @@ test('should return Education class with undefined values', () => {
         institution: undefined,
         startDate: undefined,
         endDate: undefined,
-        description: undefined,
+        location: undefined,
     };
 
     expect(education).toMatchObject(userEducation);
