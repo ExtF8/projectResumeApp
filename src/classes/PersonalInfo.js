@@ -61,6 +61,16 @@ export default class PersonalInfo {
         return this.profileSummary;
     }
 
+    getInfo() {
+        return {
+            name: this.fullName,
+            email: this.email,
+            phone: this.phone,
+            address: this.address,
+            profileSummary: this.profileSummary,
+        };
+    }
+
     #validateEmail(email) {
         const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 
