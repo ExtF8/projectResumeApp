@@ -19,3 +19,11 @@ test('should return Education class with undefined values', () => {
 
     expect(education).toMatchObject(userEducation);
 });
+
+test('should update degree', () => {
+    const education = new Education();
+
+    education.updateDegree('Masters');
+
+    expect(education.getDegree()).toBe('Masters');
+});
