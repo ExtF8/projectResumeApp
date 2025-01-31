@@ -1,5 +1,5 @@
 export default class PersonalInfo {
-    constructor(fullName = '', email = '', phone = '', address = '', profileSummary = '') {
+    constructor(fullName, email, phone, address, profileSummary) {
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
