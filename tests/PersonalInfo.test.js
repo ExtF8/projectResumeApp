@@ -82,10 +82,8 @@ test('should return complete personal info', () => {
 
     const personInfo = person.getInfo();
 
-    console.log(personInfo)
-
     const personalInfo = {
-        name: 'First Last',
+        fullName: 'First Last',
         email: 'firstLast@mail.com',
         phone: '12345678',
         address: 'City, Country',

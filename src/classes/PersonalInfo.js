@@ -63,7 +63,7 @@ export default class PersonalInfo {
 
     getInfo() {
         return {
-            name: this.fullName,
+            fullName: this.fullName,
             email: this.email,
             phone: this.phone,
             address: this.address,
