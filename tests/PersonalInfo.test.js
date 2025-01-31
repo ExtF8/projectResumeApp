@@ -6,6 +6,20 @@ test('should initialize PersonalInfo class', () => {
     expect(personalInfo).toBeInstanceOf(PersonalInfo);
 });
 
+test('should return PersonalInfo class with undefined values', () => {
+    const personalInfo = new PersonalInfo();
+
+    const userInfo = {
+        fullName: undefined,
+        email: undefined,
+        phone: undefined,
+        address: undefined,
+        profileSummary: undefined,
+    };
+
+    expect(personalInfo).toMatchObject(userInfo);
+});
+
 test('should update full name', () => {
     const personalInfo = new PersonalInfo();
 
@@ -72,7 +86,7 @@ test('should return profile summary', () => {
     expect(personalInfo.getSummary()).toBe('Lorem ipsum');
 });
 
-test('should return complete personal info', () => {
+test('should return complete personal personalInfo', () => {
     const person = new PersonalInfo();
     person.updateFullName('First', 'Last');
     person.updateEmail('firstLast@mail.com');
