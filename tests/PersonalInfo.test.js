@@ -71,3 +71,26 @@ test('should return profile summary', () => {
 
     expect(personalInfo.getSummary()).toBe('Lorem ipsum');
 });
+
+test('should return complete personal info', () => {
+    const person = new PersonalInfo();
+    person.updateFullName('First', 'Last');
+    person.updateEmail('firstLast@mail.com');
+    person.updatePhone('12345678');
+    person.updateAddress('City', 'Country');
+    person.updateSummary('Lorem ipsum');
+
+    const personInfo = person.getInfo();
+
+    console.log(personInfo)
+
+    const personalInfo = {
+        name: 'First Last',
+        email: 'firstLast@mail.com',
+        phone: '12345678',
+        address: 'City, Country',
+        profileSummary: 'Lorem ipsum',
+    };
+
+    expect(personInfo).toMatchObject(personalInfo);
+});
