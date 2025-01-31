@@ -8,8 +8,7 @@ export default class PersonalInfo {
     }
 
     updateFullName(firstName, lastName) {
-        const fullName = firstName + ' ' + lastName;
-        this.fullName = fullName;
+        this.fullName = `${firstName} ${lastName}`;
     }
 
     updateEmail(email) {
@@ -33,8 +32,7 @@ export default class PersonalInfo {
     }
 
     updateAddress(city, country) {
-        const address = city + ', ' + country;
-        this.address = address;
+        this.address = `${city}, ${country}`;
     }
 
     updateSummary(profileSummary) {
