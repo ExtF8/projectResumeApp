@@ -40,15 +40,22 @@ test('should update institution', () => {
 test('should update start date', () => {
     const education = new Education();
 
-    education.updateStartDate('Month 2000')
+    education.updateStartDate('Month 2000');
 
-    expect(education.getStartDate()).toBe('Month 2000')
+    expect(education.getStartDate()).toBe('Month 2000');
 });
 
 test('should update end date', () => {
     const education = new Education();
 
-    education.updateEndDate('Month 2004')
+    education.updateEndDate('Month 2004');
 
-    expect(education.getEndDate()).toBe('Month 2004')
+    expect(education.getEndDate()).toBe('Month 2004');
+});
+
+test('should update location', () => {
+    const education = new Education();
+    education.updateLocation('Europe');
+
+    expect(education.getLocation()).toBe('Europe');
 });
