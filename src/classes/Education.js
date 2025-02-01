@@ -1,10 +1,11 @@
 export default class Education {
-    constructor(degree, institution, startDate, endDate, location) {
+    constructor(degree, institution, startDate, endDate, location, educationEntries = []) {
         this.degree = degree;
         this.institution = institution;
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
+        this.educationEntries = educationEntries;
     }
 
     updateDegree(degree) {
