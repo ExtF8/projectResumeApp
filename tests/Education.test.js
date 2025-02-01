@@ -36,3 +36,19 @@ test('should update institution', () => {
 
     expect(education.getInstitution()).toBe('Some Fancy University');
 });
+
+test('should update start date', () => {
+    const education = new Education();
+
+    education.updateStartDate('Month 2000')
+
+    expect(education.getStartDate()).toBe('Month 2000')
+});
+
+test('should update start date', () => {
+    const education = new Education();
+
+    education.updateEndDate('Month 2004')
+
+    expect(education.getEndDate()).toBe('Month 2004')
+});
