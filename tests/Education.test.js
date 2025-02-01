@@ -27,3 +27,11 @@ test('should update degree', () => {
 
     expect(education.getDegree()).toBe('Masters');
 });
+
+test('should update institution', () => {
+    const education = new Education();
+
+    education.updateInstitution('Some Fancy University');
+
+    expect(education.getInstitution()).toBe('Some Fancy University');
+});
