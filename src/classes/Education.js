@@ -24,6 +24,10 @@ export default class Education {
         this.endDate = endDate;
     }
 
+    updateLocation(location) {
+        this.location = location;
+    }
+
     getDegree() {
         return this.degree;
     }
@@ -38,5 +42,9 @@ export default class Education {
 
     getEndDate() {
         return this.endDate;
+    }
+
+    getLocation() {
+        return this.location;
     }
 }
