@@ -16,11 +16,27 @@ export default class Education {
         this.institution = institution;
     }
 
+    updateStartDate(startDate) {
+        this.startDate = startDate;
+    }
+
+    updateEndDate(endDate) {
+        this.endDate = endDate;
+    }
+
     getDegree() {
         return this.degree;
     }
 
     getInstitution() {
         return this.institution;
+    }
+
+    getStartDate() {
+        return this.startDate;
+    }
+
+    getEndDate() {
+        return this.endDate;
     }
 }
