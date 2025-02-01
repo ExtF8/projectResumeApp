@@ -45,7 +45,7 @@ test('should update start date', () => {
     expect(education.getStartDate()).toBe('Month 2000')
 });
 
-test('should update start date', () => {
+test('should update end date', () => {
     const education = new Education();
 
     education.updateEndDate('Month 2004')
