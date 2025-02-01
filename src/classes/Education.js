@@ -11,7 +11,15 @@ export default class Education {
         this.degree = degree;
     }
 
+    updateInstitution(institution) {
+        this.institution = institution;
+    }
+
     getDegree() {
         return this.degree;
+    }
+
+    getInstitution() {
+        return this.institution;
     }
 }
