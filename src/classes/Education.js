@@ -32,6 +32,18 @@ export default class Education {
         this.educationEntries.push(entry);
     }
 
+    updateEducationEntry(index, updatedData) {
+        if (index < 0 || index >= this.educationEntries.length) {
+            throw new Error('invalid index');
+        }
+
+        // Merge existing entry with new values
+        this.educationEntries[index] = {
+            ...this.educationEntries[index],
+            ...updatedData,
+        };
+    }
+
     getDegree() {
         return this.degree;
     }
@@ -50,5 +62,9 @@ export default class Education {
 
     getLocation() {
         return this.location;
+    }
+
+    getEducationEntries() {
+        return this.educationEntries;
     }
 }
