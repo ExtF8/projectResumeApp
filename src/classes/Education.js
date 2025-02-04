@@ -28,6 +28,10 @@ export default class Education {
         this.location = location;
     }
 
+    addEducationEntry(entry) {
+        this.educationEntries.push(entry);
+    }
+
     getDegree() {
         return this.degree;
     }
