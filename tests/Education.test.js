@@ -74,11 +74,51 @@ test('should add education entries', () => {
         institution: education.getInstitution(),
         startDate: education.getStartDate(),
         endDate: education.getEndDate(),
-        education: education.getLocation(),
+        location: education.getLocation(),
     };
     education.addEducationEntry(educationEntry);
     education.addEducationEntry('2');
     education.addEducationEntry('3');
 
     expect(education.educationEntries.length).toBe(3);
+});
+
+test('should update education entry', () => {
+    const education = new Education();
+
+    education.updateDegree('Masters');
+    education.updateInstitution('Some Fancy University');
+    education.updateStartDate('Month 2000');
+    education.updateEndDate('Month 2004');
+    education.updateLocation('Europe');
+
+    const educationEntryOne = {
+        degree: education.getDegree(),
+        institution: education.getInstitution(),
+        startDate: education.getStartDate(),
+        endDate: education.getEndDate(),
+        location: education.getLocation(),
+    };
+
+    education.addEducationEntry(educationEntryOne);
+
+    education.updateDegree('Bachelors');
+    education.updateInstitution('Some Simple University');
+    education.updateStartDate('Month 1997');
+    education.updateEndDate('Month 2000');
+    education.updateLocation('Europe');
+
+    const educationEntryTwo = {
+        degree: education.getDegree(),
+        institution: education.getInstitution(),
+        startDate: education.getStartDate(),
+        endDate: education.getEndDate(),
+        location: education.getLocation(),
+    };
+
+    education.addEducationEntry(educationEntryTwo);
+
+    education.updateEducationEntry(1, { degree: 'Masters' });
+
+    expect(education.getEducationEntries()[1].degree).toBe('Masters');
 });
