@@ -59,3 +59,26 @@ test('should update location', () => {
 
     expect(education.getLocation()).toBe('Europe');
 });
+
+test('should add education entries', () => {
+    const education = new Education();
+
+    education.updateDegree('Masters');
+    education.updateInstitution('Some Fancy University');
+    education.updateStartDate('Month 2000');
+    education.updateEndDate('Month 2004');
+    education.updateLocation('Europe');
+
+    const educationEntry = {
+        degree: education.getDegree(),
+        institution: education.getInstitution(),
+        startDate: education.getStartDate(),
+        endDate: education.getEndDate(),
+        education: education.getLocation(),
+    };
+    education.addEducationEntry(educationEntry);
+    education.addEducationEntry('2');
+    education.addEducationEntry('3');
+
+    expect(education.educationEntries.length).toBe(3);
+});
