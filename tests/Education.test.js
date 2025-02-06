@@ -248,3 +248,18 @@ test('should return console error when invalid index for deleting entries', () =
     expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('Invalid index for deleting education entry');
 });
+
+test('should clear all education entries', () => {
+    const education = new Education();
+
+    education.addEducationEntry('1');
+    education.addEducationEntry('2');
+    education.addEducationEntry('3');
+    education.addEducationEntry('4');
+
+    education.clearEducationEntries();
+
+    const result = education.getEducationEntries();
+
+    expect(result.length).toBe(0);
+});
