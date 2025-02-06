@@ -57,6 +57,10 @@ export default class Education {
         return true;
     }
 
+    clearEducationEntries() {
+        this.educationEntries = []
+    }
+
     getDegree() {
         return this.degree;
     }
