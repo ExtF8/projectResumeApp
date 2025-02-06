@@ -34,7 +34,8 @@ export default class Education {
 
     updateEducationEntry(index, updatedData) {
         if (index < 0 || index >= this.educationEntries.length) {
-            throw new Error('invalid index');
+            console.error('Invalid index for update education entry');
+            return false;
         }
 
         // Merge existing entry with new values
@@ -42,6 +43,18 @@ export default class Education {
             ...this.educationEntries[index],
             ...updatedData,
         };
+
+        return true;
+    }
+
+    deleteEducationEntry(index) {
+        if (index < 0 || index >= this.educationEntries.length) {
+            console.error('Invalid index for deleting education entry');
+            return false;
+        }
+
+        this.educationEntries.splice(index, 1);
+        return true;
     }
 
     getDegree() {
