@@ -1,5 +1,7 @@
 import PersonalInfo from '../src/classes/PersonalInfo';
 
+// TODO: refactor tests for better readability
+
 test('should initialize PersonalInfo class', () => {
     const personalInfo = new PersonalInfo();
 
