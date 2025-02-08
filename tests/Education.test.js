@@ -1,265 +1,155 @@
 import Education from '../src/classes/Education';
 
-test('should initialize Education class', () => {
-    const education = new Education();
+describe('Education Class', () => {
+    let education;
 
-    expect(education).toBeInstanceOf(Education);
-});
+    beforeEach(() => {
+        education = new Education();
+    });
 
-test('should return Education class with undefined values', () => {
-    const education = new Education();
+    test('should initialize an Education instance', () => {
+        expect(education).toBeInstanceOf(Education);
+    });
 
-    const userEducation = {
-        degree: undefined,
-        institution: undefined,
-        startDate: undefined,
-        endDate: undefined,
-        location: undefined,
-        educationEntries: [],
-    };
+    test('should initialize with undefined values and an empty educationEntries array', () => {
+        const userEducation = {
+            degree: undefined,
+            institution: undefined,
+            startDate: undefined,
+            endDate: undefined,
+            location: undefined,
+            educationEntries: [],
+        };
 
-    expect(education).toMatchObject(userEducation);
-});
+        expect(education).toMatchObject(userEducation);
+    });
 
-test('should update degree', () => {
-    const education = new Education();
+    describe('Updating Properties', () => {
+        test.each([
+            ['degree', 'Masters'],
+            ['institution', 'Some Fancy University'],
+            ['startDate', 'Month 2000'],
+            ['endDate', 'Month 2004'],
+            ['location', 'Europe'],
+        ])('should update %s', (property, value) => {
+            education[`update${property.charAt(0).toUpperCase() + property.slice(1)}`](value);
+            expect(education[`get${property.charAt(0).toUpperCase() + property.slice(1)}`]()).toBe(
+                value
+            );
+        });
+    });
 
-    education.updateDegree('Masters');
+    describe('Managing Education Entries', () => {
+        test('should add multiple education entries', () => {
+            const entryOne = {
+                degree: 'Masters',
+                institution: 'Fancy University',
+                startDate: '2000',
+                endDate: '2004',
+                location: 'Europe',
+            };
+            const entryTwo = {
+                degree: 'Bachelors',
+                institution: 'Simple University',
+                startDate: '1997',
+                endDate: '2000',
+                location: 'Europe',
+            };
 
-    expect(education.getDegree()).toBe('Masters');
-});
+            education.addEducationEntry(entryOne);
+            education.addEducationEntry(entryTwo);
 
-test('should update institution', () => {
-    const education = new Education();
+            expect(education.getEducationEntries()).toEqual([entryOne, entryTwo]);
+            expect(education.getEducationEntries().length).toBe(2);
+        });
 
-    education.updateInstitution('Some Fancy University');
+        test('should update an existing education entry', () => {
+            const entry = {
+                degree: 'Bachelors',
+                institution: 'Simple University',
+                startDate: '1997',
+                endDate: '2000',
+                location: 'Europe',
+            };
 
-    expect(education.getInstitution()).toBe('Some Fancy University');
-});
+            education.addEducationEntry(entry);
+            const update = education.updateEducationEntry(0, { degree: 'Masters' });
 
-test('should update start date', () => {
-    const education = new Education();
+            expect(update).toBe(true);
+            expect(education.getEducationEntries()[0].degree).toBe('Masters');
+        });
 
-    education.updateStartDate('Month 2000');
+        test('should return false and log an error when updating an invalid index', () => {
+            console.error = jest.fn();
 
-    expect(education.getStartDate()).toBe('Month 2000');
-});
+            const update = education.updateEducationEntry(3, { degree: 'Masters' });
 
-test('should update end date', () => {
-    const education = new Education();
+            expect(update).toBe(false);
 
-    education.updateEndDate('Month 2004');
+            expect(console.error).toHaveBeenCalledWith('Invalid index for update education entry');
+        });
 
-    expect(education.getEndDate()).toBe('Month 2004');
-});
+        test('should delete an education entry by index', () => {
+            const entryOne = {
+                degree: 'Masters',
+                institution: 'Fancy University',
+                startDate: '2000',
+                endDate: '2004',
+                location: 'Europe',
+            };
+            const entryTwo = {
+                degree: 'Bachelors',
+                institution: 'Simple University',
+                startDate: '1997',
+                endDate: '2000',
+                location: 'Europe',
+            };
 
-test('should update location', () => {
-    const education = new Education();
-    education.updateLocation('Europe');
+            education.addEducationEntry(entryOne);
+            education.addEducationEntry(entryTwo);
 
-    expect(education.getLocation()).toBe('Europe');
-});
+            const result = education.deleteEducationEntry(0);
 
-test('should add education entries', () => {
-    const education = new Education();
+            expect(result).toBe(true);
+            expect(education.getEducationEntries().length).toBe(1);
+            expect(education.getEducationEntries()[0]).toEqual(entryTwo);
+        });
 
-    education.updateDegree('Masters');
-    education.updateInstitution('Some Fancy University');
-    education.updateStartDate('Month 2000');
-    education.updateEndDate('Month 2004');
-    education.updateLocation('Europe');
+        test('should return false and log an error when deleting an invalid index', () => {
+            console.error = jest.fn();
 
-    const educationEntry = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-    education.addEducationEntry(educationEntry);
-    education.addEducationEntry('2');
-    education.addEducationEntry('3');
+            const result = education.deleteEducationEntry(3);
 
-    expect(education.educationEntries.length).toBe(3);
-});
+            expect(result).toBe(false);
+            expect(console.error).toHaveBeenCalledWith(
+                'Invalid index for deleting education entry'
+            );
+        });
 
-test('should update education entry', () => {
-    const education = new Education();
+        test('should clear all education entries', () => {
+            const entryOne = {
+                degree: 'Masters',
+                institution: 'Fancy University',
+                startDate: '2000',
+                endDate: '2004',
+                location: 'Europe',
+            };
+            const entryTwo = {
+                degree: 'Bachelors',
+                institution: 'Simple University',
+                startDate: '1997',
+                endDate: '2000',
+                location: 'Europe',
+            };
 
-    education.updateDegree('Masters');
-    education.updateInstitution('Some Fancy University');
-    education.updateStartDate('Month 2000');
-    education.updateEndDate('Month 2004');
-    education.updateLocation('Europe');
+            education.addEducationEntry(entryOne);
+            education.addEducationEntry(entryTwo);
 
-    const educationEntryOne = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
+            education.clearEducationEntries();
 
-    education.addEducationEntry(educationEntryOne);
+            const result = education.getEducationEntries();
 
-    education.updateDegree('Bachelors');
-    education.updateInstitution('Some Simple University');
-    education.updateStartDate('Month 1997');
-    education.updateEndDate('Month 2000');
-    education.updateLocation('Europe');
-
-    const educationEntryTwo = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.addEducationEntry(educationEntryTwo);
-
-    const update = education.updateEducationEntry(1, { degree: 'Masters' });
-
-    expect(update).toBe(true);
-    expect(education.getEducationEntries()[1].degree).toBe('Masters');
-});
-
-test('should return false and console error if education entry update is provided with wrong index', () => {
-    const education = new Education();
-
-    education.updateDegree('Masters');
-    education.updateInstitution('Some Fancy University');
-    education.updateStartDate('Month 2000');
-    education.updateEndDate('Month 2004');
-    education.updateLocation('Europe');
-
-    const educationEntryOne = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.updateDegree('Bachelors');
-    education.updateInstitution('Some Simple University');
-    education.updateStartDate('Month 1997');
-    education.updateEndDate('Month 2000');
-    education.updateLocation('Europe');
-
-    const educationEntryTwo = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.addEducationEntry(educationEntryOne);
-    education.addEducationEntry(educationEntryTwo);
-
-    console.error = jest.fn();
-
-    const update = education.updateEducationEntry(3, { degree: 'Masters' });
-
-    expect(update).toBe(false);
-
-    expect(console.error).toHaveBeenCalledWith('Invalid index for update education entry');
-});
-
-test('should delete education entry from educationEntries array ', () => {
-    const education = new Education();
-
-    education.updateDegree('Masters');
-    education.updateInstitution('Some Fancy University');
-    education.updateStartDate('Month 2000');
-    education.updateEndDate('Month 2004');
-    education.updateLocation('Europe');
-
-    const educationEntryOne = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.updateDegree('Bachelors');
-    education.updateInstitution('Some Simple University');
-    education.updateStartDate('Month 1997');
-    education.updateEndDate('Month 2000');
-    education.updateLocation('Europe');
-
-    const educationEntryTwo = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.addEducationEntry(educationEntryOne);
-    education.addEducationEntry(educationEntryTwo);
-
-    const result = education.deleteEducationEntry(0);
-
-    expect(result).toBe(true);
-    expect(education.educationEntries.length).toBe(1);
-});
-
-test('should return console error when invalid index for deleting entries', () => {
-    const education = new Education();
-
-    education.updateDegree('Masters');
-    education.updateInstitution('Some Fancy University');
-    education.updateStartDate('Month 2000');
-    education.updateEndDate('Month 2004');
-    education.updateLocation('Europe');
-
-    const educationEntryOne = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.updateDegree('Bachelors');
-    education.updateInstitution('Some Simple University');
-    education.updateStartDate('Month 1997');
-    education.updateEndDate('Month 2000');
-    education.updateLocation('Europe');
-
-    const educationEntryTwo = {
-        degree: education.getDegree(),
-        institution: education.getInstitution(),
-        startDate: education.getStartDate(),
-        endDate: education.getEndDate(),
-        location: education.getLocation(),
-    };
-
-    education.addEducationEntry(educationEntryOne);
-    education.addEducationEntry(educationEntryTwo);
-
-    console.error = jest.fn();
-
-    const result = education.deleteEducationEntry(3);
-
-    expect(result).toBe(false);
-    expect(console.error).toHaveBeenCalledWith('Invalid index for deleting education entry');
-});
-
-test('should clear all education entries', () => {
-    const education = new Education();
-
-    education.addEducationEntry('1');
-    education.addEducationEntry('2');
-    education.addEducationEntry('3');
-    education.addEducationEntry('4');
-
-    education.clearEducationEntries();
-
-    const result = education.getEducationEntries();
-
-    expect(result.length).toBe(0);
+            expect(result.length).toBe(0);
+        });
+    });
 });
