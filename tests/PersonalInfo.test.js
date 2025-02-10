@@ -2,109 +2,97 @@ import PersonalInfo from '../src/classes/PersonalInfo';
 
 // TODO: refactor tests for better readability
 
-test('should initialize PersonalInfo class', () => {
-    const personalInfo = new PersonalInfo();
+describe('Personal info class', () => {
+    let personalInfo;
 
-    expect(personalInfo).toBeInstanceOf(PersonalInfo);
-});
+    beforeEach(() => {
+        personalInfo = new PersonalInfo();
+    });
 
-test('should return PersonalInfo class with undefined values', () => {
-    const personalInfo = new PersonalInfo();
+    test('should initialize an PersonalInfo instance', () => {
+        expect(personalInfo).toBeInstanceOf(PersonalInfo);
+    });
 
-    const userInfo = {
-        fullName: undefined,
-        email: undefined,
-        phone: undefined,
-        address: undefined,
-        profileSummary: undefined,
-    };
+    test('should return PersonalInfo class with undefined values', () => {
+        const userInfo = {
+            fullName: undefined,
+            email: undefined,
+            phone: undefined,
+            address: undefined,
+            profileSummary: undefined,
+        };
 
-    expect(personalInfo).toMatchObject(userInfo);
-});
+        expect(personalInfo).toMatchObject(userInfo);
+    });
 
-test('should update full name', () => {
-    const personalInfo = new PersonalInfo();
+    describe('Updating Personal information', () => {
+        test('should update full name', () => {
+            const firstName = 'Test';
+            const lastName = 'User';
 
-    const firstName = 'Test';
-    const lastName = 'User';
+            personalInfo.updateFullName(firstName, lastName);
 
-    personalInfo.updateFullName(firstName, lastName);
+            expect(personalInfo.fullName).toBe('Test User');
+        });
 
-    expect(personalInfo.fullName).toBe('Test User');
-});
+        test('should update email', () => {
+            personalInfo.updateEmail('some@some.com');
 
-test('should update email', () => {
-    const personalInfo = new PersonalInfo();
-    personalInfo.updateEmail('some@some.com');
+            expect(personalInfo.email).toBe('some@some.com');
+        });
 
-    expect(personalInfo.email).toBe('some@some.com');
-});
+        test('should return false for invalid email format', () => {
+            const wrongEmail = personalInfo.updateEmail('some!some.com');
 
-test('should return false if email fails regex', () => {
-    const personalInfo = new PersonalInfo();
+            expect(wrongEmail).toBe(false);
+        });
 
-    const wrongEmail = personalInfo.updateEmail('some!some.com');
+        test('should update phone', () => {
+            personalInfo.updatePhone('1234567');
 
-    expect(wrongEmail).toBe(false);
-});
+            expect(personalInfo.getPhone()).toBe('1234567');
+        });
 
-test('should update phone', () => {
-    const personalInfo = new PersonalInfo();
+        test('should update phone with country code', () => {
+            personalInfo.updatePhone('+1234567');
 
-    personalInfo.updatePhone('1234567');
+            expect(personalInfo.getPhone()).toBe('+1234567');
+        });
 
-    expect(personalInfo.getPhone()).toBe('1234567');
-});
+        test('should return false for invalid phone number', () => {
+            const wrongPhone = personalInfo.updatePhone('+213123df');
 
-test('should update phone with country code', () => {
-    const personalInfo = new PersonalInfo();
+            expect(wrongPhone).toBe(false);
+        });
 
-    personalInfo.updatePhone('+1234567');
+        test('should return address with city and country', () => {
+            personalInfo.updateAddress('City', 'Country');
 
-    expect(personalInfo.getPhone()).toBe('+1234567');
-});
+            expect(personalInfo.getAddress()).toBe('City, Country');
+        });
 
-test('should return false if phone fails regex', () => {
-    const personalInfo = new PersonalInfo();
+        test('should return profile summary', () => {
+            personalInfo.updateSummary('Lorem ipsum');
 
-    const wrongPhone = personalInfo.updatePhone('+213123df');
+            expect(personalInfo.getSummary()).toBe('Lorem ipsum');
+        });
 
-    expect(wrongPhone).toBe(false);
-});
+        test('should return complete personal personalInfo', () => {
+            personalInfo.updateFullName('First', 'Last');
+            personalInfo.updateEmail('firstLast@mail.com');
+            personalInfo.updatePhone('12345678');
+            personalInfo.updateAddress('City', 'Country');
+            personalInfo.updateSummary('Lorem ipsum');
 
-test('should return address, city and country', () => {
-    const personalInfo = new PersonalInfo();
+            const userInfo = {
+                fullName: 'First Last',
+                email: 'firstLast@mail.com',
+                phone: '12345678',
+                address: 'City, Country',
+                profileSummary: 'Lorem ipsum',
+            };
 
-    personalInfo.updateAddress('City', 'Country');
-
-    expect(personalInfo.getAddress()).toBe('City, Country');
-});
-
-test('should return profile summary', () => {
-    const personalInfo = new PersonalInfo();
-
-    personalInfo.updateSummary('Lorem ipsum');
-
-    expect(personalInfo.getSummary()).toBe('Lorem ipsum');
-});
-
-test('should return complete personal personalInfo', () => {
-    const person = new PersonalInfo();
-    person.updateFullName('First', 'Last');
-    person.updateEmail('firstLast@mail.com');
-    person.updatePhone('12345678');
-    person.updateAddress('City', 'Country');
-    person.updateSummary('Lorem ipsum');
-
-    const personInfo = person.getInfo();
-
-    const personalInfo = {
-        fullName: 'First Last',
-        email: 'firstLast@mail.com',
-        phone: '12345678',
-        address: 'City, Country',
-        profileSummary: 'Lorem ipsum',
-    };
-
-    expect(personInfo).toMatchObject(personalInfo);
+            expect(personalInfo.getInfo()).toMatchObject(userInfo);
+        });
+    });
 });
