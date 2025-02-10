@@ -28,6 +28,24 @@ export default class Experience {
         this.description = description;
     }
 
+    addExperienceEntry(entry) {
+        this.experienceEntries.push(entry);
+    }
+
+    updateExperienceEntry(index, updatedData) {
+        if (index < 0 || index >= this.experienceEntries.length) {
+            console.error('Invalid index for update experience entry');
+        }
+
+        // Merge existing entry with new values
+        this.experienceEntries[index] = {
+            ...this.experienceEntries[index],
+            ...updatedData,
+        };
+
+        return true;
+    }
+
     getRole() {
         return this.role;
     }
@@ -46,5 +64,9 @@ export default class Experience {
 
     getDescription() {
         return this.description;
+    }
+
+    getExperienceEntries() {
+        return this.experienceEntries;
     }
 }
