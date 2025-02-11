@@ -35,6 +35,7 @@ export default class Experience {
     updateExperienceEntry(index, updatedData) {
         if (index < 0 || index >= this.experienceEntries.length) {
             console.error('Invalid index for update experience entry');
+            return false;
         }
 
         // Merge existing entry with new values
