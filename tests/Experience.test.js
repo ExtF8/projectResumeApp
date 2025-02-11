@@ -76,7 +76,17 @@ describe('Experience Class', () => {
             const update = experience.updateExperienceEntry(0, { role: 'Manager' });
 
             expect(update).toBe(true);
-            expect(experience.getExperienceEntries()[0].role)
+            expect(experience.getExperienceEntries()[0].role);
+        });
+
+        test('should return false and log an error when updating an invalid index', () => {
+            console.error = jest.fn();
+
+            const update = experience.updateExperienceEntry(3, { role: 'Employee' });
+
+            expect(update).toBe(false);
+
+            expect(console.error).toHaveBeenCalledWith('Invalid index for update experience entry');
         });
     });
 });
