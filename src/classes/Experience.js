@@ -47,6 +47,16 @@ export default class Experience {
         return true;
     }
 
+    deleteExperienceEntry(index) {
+        if (index < 0 || index >= this.experienceEntries.length) {
+            console.error('Invalid index for deleting experience entry');
+            return false;
+        }
+
+        this.experienceEntries.splice(index, 1);
+        return true;
+    }
+
     getRole() {
         return this.role;
     }
