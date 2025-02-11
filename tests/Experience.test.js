@@ -88,5 +88,42 @@ describe('Experience Class', () => {
 
             expect(console.error).toHaveBeenCalledWith('Invalid index for update experience entry');
         });
+
+        test('should delete experience entry by index', () => {
+            const entryOne = {
+                role: 'Employee',
+                company: 'Employer',
+                startDate: '2010',
+                endDate: '2020',
+                description: 'Did some important work',
+            };
+            const entryTwo = {
+                role: 'Worker',
+                company: 'Some Employer',
+                startDate: '2020',
+                endDate: '2025',
+                description: 'Did some not so important work',
+            };
+
+            experience.addExperienceEntry(entryOne);
+            experience.addExperienceEntry(entryTwo);
+
+            const result = experience.deleteExperienceEntry(0);
+
+            expect(result).toBe(true);
+            expect(experience.getExperienceEntries().length).toBe(1);
+            expect(experience.getExperienceEntries()[0]).toEqual(entryTwo);
+        });
+
+        test('should return false and log an error when deleting an invalid index', () => {
+            console.error = jest.fn();
+
+            const result = experience.deleteExperienceEntry(3);
+
+            expect(result).toBe(false);
+            expect(console.error).toHaveBeenCalledWith(
+                'Invalid index for deleting experience entry'
+            );
+        });
     });
 });
