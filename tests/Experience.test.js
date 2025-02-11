@@ -125,5 +125,31 @@ describe('Experience Class', () => {
                 'Invalid index for deleting experience entry'
             );
         });
+
+        test('should clear all experience entries', () => {
+            const entryOne = {
+                role: 'Employee',
+                company: 'Employer',
+                startDate: '2010',
+                endDate: '2020',
+                description: 'Did some important work',
+            };
+            const entryTwo = {
+                role: 'Worker',
+                company: 'Some Employer',
+                startDate: '2020',
+                endDate: '2025',
+                description: 'Did some not so important work',
+            };
+
+            experience.addExperienceEntry(entryOne);
+            experience.addExperienceEntry(entryTwo);
+
+            experience.clearExperienceEntries();
+
+            const result = experience.getExperienceEntries();
+
+            expect(result.length).toBe(0);
+        });
     });
 });
