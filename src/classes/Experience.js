@@ -57,6 +57,10 @@ export default class Experience {
         return true;
     }
 
+    clearExperienceEntries() {
+        this.experienceEntries = [];
+    }
+
     getRole() {
         return this.role;
     }
