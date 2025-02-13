@@ -27,10 +27,7 @@ describe('Personal info class', () => {
 
     describe('Updating Personal information', () => {
         test('should update full name', () => {
-            const firstName = 'Test';
-            const lastName = 'User';
-
-            personalInfo.updateFullName(firstName, lastName);
+            personalInfo.updateFullName('Test User');
 
             expect(personalInfo.fullName).toBe('Test User');
         });
@@ -78,7 +75,7 @@ describe('Personal info class', () => {
         });
 
         test('should return complete personal personalInfo', () => {
-            personalInfo.updateFullName('First', 'Last');
+            personalInfo.updateFullName('First Last');
             personalInfo.updateEmail('firstLast@mail.com');
             personalInfo.updatePhone('12345678');
             personalInfo.updateAddress('City', 'Country');
