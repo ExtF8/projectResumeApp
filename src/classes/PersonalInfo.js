@@ -7,8 +7,8 @@ export default class PersonalInfo {
         this.profileSummary = profileSummary;
     }
 
-    updateFullName(firstName, lastName) {
-        this.fullName = `${firstName} ${lastName}`;
+    updateFullName(fullName) {
+        this.fullName = fullName;
     }
 
     updateEmail(email) {
