@@ -13,13 +13,13 @@ describe('Personal info class', () => {
         expect(personalInfo).toBeInstanceOf(PersonalInfo);
     });
 
-    test('should return PersonalInfo class with undefined values', () => {
+    test('should return PersonalInfo class with empty strings as values', () => {
         const userInfo = {
-            fullName: undefined,
-            email: undefined,
-            phone: undefined,
-            address: undefined,
-            profileSummary: undefined,
+            fullName: '',
+            email: '',
+            phone: '',
+            address: '',
+            profileSummary: '',
         };
 
         expect(personalInfo).toMatchObject(userInfo);
