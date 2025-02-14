@@ -7,25 +7,23 @@ const PersonalInfoComponent = () => {
     const handleChange = event => {
         const { name, value } = event.target;
 
-        setPersonalInfo(previous => {
-            // Create a copy of the previous class instance
-            const updatedInfo = new PersonalInfo();
-            // Copy all previous properties
-            Object.assign(updatedInfo, previous);
-            // Update the specific field dynamically
-            const methodName = `update${name.charAt(0).toUpperCase() + name.slice(1)}`;
-            if (typeof updatedInfo[methodName] === 'function') {
-                const success = updatedInfo[methodName](value);
-                if (success === false) {
-                    return previous;
-                }
-            } else {
-                updatedInfo[name] = value;
-            }
-
-            return updatedInfo;
+        setPersonalInfo({
+            ...personalInfo,
+            [name]: value,
         });
-        console.log(event.target.value);
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        const updatedInfo = new PersonalInfo();
+
+        updatedInfo.updateFullName(personalInfo.fullName);
+        updatedInfo.updateEmail(personalInfo.email);
+
+        setPersonalInfo(updatedInfo);
+
+        console.log(updatedInfo);
     };
 
     function test() {
@@ -38,23 +36,27 @@ const PersonalInfoComponent = () => {
 
     return (
         <>
-            <h2>Personal Information</h2>
-            <input
-                id='fullName'
-                type='text'
-                name='fullName'
-                value={personalInfo.fullName}
-                onChange={handleChange}
-                placeholder='Full Name'
-            />
-            <input
-                id='email'
-                type='email'
-                name='email'
-                value={personalInfo.email}
-                onChange={handleChange}
-                placeholder='someone@mail.com'
-            />
+            <form onSubmit={handleSubmit}>
+                <h2>Personal Information</h2>
+                <input
+                    id='fullName'
+                    type='text'
+                    name='fullName'
+                    value={personalInfo.fullName}
+                    onChange={handleChange}
+                    placeholder='Full Name'
+                />
+                <input
+                    id='email'
+                    type='email'
+                    name='email'
+                    value={personalInfo.email}
+                    onChange={handleChange}
+                    placeholder='someone@mail.com'
+                />
+
+                <button type='submit'>Save</button>
+            </form>
             <button onClick={test}>test</button>
         </>
     );
