@@ -5,13 +5,13 @@ import styles from '../../styles/textInput.module.css';
 const TextInput = ({ className, label, errorText, id, ...rest }) => {
     const [validationMessage, setValidationMessage] = useState('');
 
-    const onInvalid = e => {
-        const target = e.target;
+    const onInvalid = event => {
+        const target = event.target;
         setValidationMessage(target.validationMessage);
     };
 
-    const onBlur = e => {
-        const target = e.target;
+    const onBlur = event => {
+        const target = event.target;
 
         if (!!validationMessage) {
             setValidationMessage(target.validationMessage);
