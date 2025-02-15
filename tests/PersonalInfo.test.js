@@ -63,7 +63,7 @@ describe('Personal info class', () => {
         });
 
         test('should return address with city and country', () => {
-            personalInfo.updateAddress('City', 'Country');
+            personalInfo.updateAddress('City, Country');
 
             expect(personalInfo.getAddress()).toBe('City, Country');
         });
@@ -78,7 +78,7 @@ describe('Personal info class', () => {
             personalInfo.updateFullName('First Last');
             personalInfo.updateEmail('firstLast@mail.com');
             personalInfo.updatePhone('12345678');
-            personalInfo.updateAddress('City', 'Country');
+            personalInfo.updateAddress('City, Country');
             personalInfo.updateSummary('Lorem ipsum');
 
             const userInfo = {

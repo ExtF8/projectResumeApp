@@ -31,8 +31,8 @@ export default class PersonalInfo {
         this.phone = phone;
     }
 
-    updateAddress(city, country) {
-        this.address = `${city}, ${country}`;
+    updateAddress(address) {
+        this.address = address;
     }
 
     updateSummary(profileSummary) {
