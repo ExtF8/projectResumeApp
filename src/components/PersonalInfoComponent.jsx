@@ -4,6 +4,7 @@ import PersonalInfo from '../classes/PersonalInfo';
 const PersonalInfoComponent = () => {
     const [personalInfo, setPersonalInfo] = useState(new PersonalInfo());
 
+
     const handleChange = event => {
         const { name, value } = event.target;
 
@@ -28,14 +29,6 @@ const PersonalInfoComponent = () => {
 
         console.log(updatedInfo);
     };
-
-    function test() {
-        const testName = personalInfo.getFullName();
-        const testEmail = personalInfo.getEmail();
-
-        console.log('getName: ', testName);
-        console.log('getEmail: ', testEmail);
-    }
 
     return (
         <>
@@ -66,6 +59,7 @@ const PersonalInfoComponent = () => {
                 <label>
                     <h4>Phone</h4>
                     <input
+                        className=''
                         type='tel'
                         name='phone'
                         value={personalInfo.phone}
@@ -97,7 +91,6 @@ const PersonalInfoComponent = () => {
 
                 <button type='submit'>Save</button>
             </form>
-            <button onClick={test}>test</button>
         </>
     );
 };
