@@ -63,6 +63,16 @@ form {
     margin-bottom: 1em;
 }
 
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+h4 {
+    margin-block: 0.3em;
+    align-self: flex-start;
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
