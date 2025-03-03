@@ -5,7 +5,7 @@ const Form = ({ action, children, className, onSubmit }) => {
         event.preventDefault();
 
         const formElement = event.target;
-        formElement.checkValidity();
+        const isValid = formElement.checkValidity();
 
         formElement.classList.add(style.submitted);
 
@@ -17,18 +17,12 @@ const Form = ({ action, children, className, onSubmit }) => {
         // submit the dataObject if isValid === true
         if (isValid) {
             const dataObject = new FormData(formElement);
-            console.log(dataObject);
             onSubmit(dataObject);
         }
     };
 
     return (
-        <form
-            action={action}
-            onSubmit={handleSubmit}
-            noValidate
-            className={style.form}
-        >
+        <form action={action} onSubmit={handleSubmit} noValidate className={style.form}>
             <div className={style.wrapper}>{children}</div>
         </form>
     );
