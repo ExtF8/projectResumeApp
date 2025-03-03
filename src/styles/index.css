@@ -56,7 +56,7 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-form {
+/* form {
     display: flex;
     flex-direction: column;
     gap: 0.6em;
@@ -71,7 +71,7 @@ label {
 h4 {
     margin-block: 0.3em;
     align-self: flex-start;
-}
+} */
 
 @media (prefers-color-scheme: light) {
     :root {
