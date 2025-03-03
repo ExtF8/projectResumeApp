@@ -24,10 +24,34 @@ const PersonalInfoComponent = () => {
         <>
             <Form onSubmit={handleSubmit}>
                 <h2>Personal Information</h2>
-                <TextInput label='Full Name:' id='name' name='fullName' required />
-                <TextInput label='Email:' id='email' type='email' name='email' required />
-                <TextInput label='Address:' id='address' name='address' />
-                <TextInput label='Phone:' id='phone' name='phone' type='tel' />
+                <TextInput
+                    label='Full Name:'
+                    id='name'
+                    name='fullName'
+                    placeholder='Full Name'
+                    required
+                />
+                <TextInput
+                    label='Email:'
+                    id='email'
+                    type='email'
+                    name='email'
+                    placeholder='fullname@mail.eu'
+                    required
+                />
+                <TextInput
+                    label='Address:'
+                    id='address'
+                    name='address'
+                    placeholder='City, Country'
+                />
+                <TextInput
+                    label='Phone:'
+                    id='phone'
+                    name='phone'
+                    type='tel'
+                    placeholder='123456789'
+                />
                 <TextInput
                     label='Profile Summary'
                     name='profileSummary'
@@ -37,65 +61,6 @@ const PersonalInfoComponent = () => {
 
                 <button type='submit'>Save</button>
             </Form>
-            {/* <form onSubmit={handleSubmit}>
-                <h2>Personal Information</h2>
-                <label>
-                    <h4>Full Name</h4>
-                    <input
-                        type='text'
-                        name='fullName'
-                        value={personalInfo.fullName}
-                        onChange={handleChange}
-                        placeholder='Full Name'
-                    />
-                </label>
-
-                <label>
-                    <h4>Email</h4>
-                    <input
-                        type='email'
-                        name='email'
-                        value={personalInfo.email}
-                        onChange={handleChange}
-                        placeholder='Email'
-                    />
-                </label>
-
-                <label>
-                    <h4>Phone</h4>
-                    <input
-                        className=''
-                        type='tel'
-                        name='phone'
-                        value={personalInfo.phone}
-                        onChange={handleChange}
-                        placeholder='Phone Number'
-                    />
-                </label>
-
-                <label>
-                    <h4>Address</h4>
-                    <input
-                        type='text'
-                        name='address'
-                        value={personalInfo.address}
-                        onChange={handleChange}
-                        placeholder='City, Country'
-                    />
-                </label>
-
-                <label>
-                    <h4>Profile Summary</h4>
-                    <textarea
-                        name='profileSummary'
-                        value={personalInfo.profileSummary}
-                        onChange={handleChange}
-                        placeholder='Brief summary about yourself'
-                    />
-                </label>
-
-                <button type='submit'>Save</button>
-            </form> */}
         </>
     );
 };
