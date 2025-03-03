@@ -4,8 +4,14 @@
 }
 
 .label {
+    display: flex;
+
     color: darkcyan;
     margin-bottom: 0.25em;
+}
+
+label {
+    align-self: flex-start;
 }
 
 .input,
