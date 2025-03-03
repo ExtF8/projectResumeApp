@@ -2,7 +2,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import styles from '../../styles/textInput.module.css';
 
-const TextInput = ({ className, label, errorText, id, ...rest }) => {
+const TextInput = ({ className, label, errorText, id, multiline, ...rest }) => {
     const [validationMessage, setValidationMessage] = useState('');
 
     const onInvalid = event => {
@@ -30,13 +30,23 @@ const TextInput = ({ className, label, errorText, id, ...rest }) => {
                 )}
             </div>
             <div className='relative'>
-                <input
-                    id={id}
-                    className={styles.input}
-                    onInvalid={onInvalid}
-                    onBlur={onBlur}
-                    {...rest}
-                />
+                {multiline ? (
+                    <textarea
+                        id={id}
+                        className={styles.input}
+                        onInvalid={onInvalid}
+                        onBlur={onBlur}
+                        {...rest}
+                    />
+                ) : (
+                    <input
+                        id={id}
+                        className={styles.input}
+                        onInvalid={onInvalid}
+                        onBlur={onBlur}
+                        {...rest}
+                    />
+                )}
             </div>
 
             {!!validationMessage && (

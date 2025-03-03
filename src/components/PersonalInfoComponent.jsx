@@ -32,6 +32,7 @@ const PersonalInfoComponent = () => {
                     label='Profile Summary'
                     name='profileSummary'
                     placeholder='Brief summary about yourself'
+                    multiline
                 />
 
                 <button type='submit'>Save</button>
