@@ -1,38 +1,42 @@
 import { useState } from 'react';
 import PersonalInfo from '../classes/PersonalInfo';
+import Form from './global/form';
+import TextInput from './global/textInput';
 
 const PersonalInfoComponent = () => {
     const [personalInfo, setPersonalInfo] = useState(new PersonalInfo());
 
+    const handleSubmit = data => {
+        const extractedData = Object.fromEntries(data.entries());
 
-    const handleChange = event => {
-        const { name, value } = event.target;
+        personalInfo.updateFullName(extractedData.fullName);
+        personalInfo.updateEmail(extractedData.email);
+        personalInfo.updatePhone(extractedData.phone);
+        personalInfo.updateAddress(extractedData.address);
+        personalInfo.updateSummary(extractedData.profileSummary);
 
-        setPersonalInfo({
-            ...personalInfo,
-            [name]: value,
-        });
-    };
+        setPersonalInfo(personalInfo);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-
-        const updatedInfo = new PersonalInfo();
-
-        updatedInfo.updateFullName(personalInfo.fullName);
-        updatedInfo.updateEmail(personalInfo.email);
-        updatedInfo.updatePhone(personalInfo.phone);
-        updatedInfo.updateAddress(personalInfo.address);
-        updatedInfo.updateSummary(personalInfo.profileSummary);
-
-        setPersonalInfo(updatedInfo);
-
-        console.log(updatedInfo);
+        console.log('updated data: ', personalInfo);
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <h2>Personal Information</h2>
+                <TextInput label='Full Name:' id='name' name='fullName' required />
+                <TextInput label='Email:' id='email' type='email' name='email' required />
+                <TextInput label='Address:' id='address' name='address' />
+                <TextInput label='Phone:' id='phone' name='phone' type='tel' />
+                <TextInput
+                    label='Profile Summary'
+                    name='profileSummary'
+                    placeholder='Brief summary about yourself'
+                />
+
+                <button type='submit'>Save</button>
+            </Form>
+            {/* <form onSubmit={handleSubmit}>
                 <h2>Personal Information</h2>
                 <label>
                     <h4>Full Name</h4>
@@ -90,7 +94,7 @@ const PersonalInfoComponent = () => {
                 </label>
 
                 <button type='submit'>Save</button>
-            </form>
+            </form> */}
         </>
     );
 };
