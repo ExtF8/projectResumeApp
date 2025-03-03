@@ -17,7 +17,7 @@ const PersonalInfoComponent = () => {
 
         setPersonalInfo(personalInfo);
 
-        console.log('updated data: ', personalInfo);
+        console.log('personal info: ', personalInfo);
     };
 
     return (
